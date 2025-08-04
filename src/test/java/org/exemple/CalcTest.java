@@ -39,14 +39,14 @@ class CalcTest {
         Assertions.assertEquals(7, result, "Ответ не верен");
     }
 
-    @RepeatedTest(10)
-    @DisplayName("Проверка суммирования 2")
-    @Timeout(10)
     @Test
-    void sum2() {
+    @DisplayName("Проверка вычитания 1")
+    @Timeout(10)
+    @Tag("subtraction")
+    void subtraction1() {
         Calc calc = new Calc();
-        int result = calc.sum(1, 6);
-        Assertions.assertEquals(7, result, "Ответ не верен");
+        int result2 = calc.subtract(5, 1);
+        Assertions.assertEquals(4, result2, "Ответ не верен");
     }
 
     @ParameterizedTest(name = "#{index} - сложение {0} и {1}, ожидаем {2}")
@@ -56,5 +56,14 @@ class CalcTest {
         Calc calc = new Calc();
         int result = calc.sum(a, b);
         Assertions.assertEquals(expectedresult, result, "Ответ не верен");
+    }
+
+    @ParameterizedTest(name = "#{index} - разница {5} и {3}, ожидаем {2}")
+    @DisplayName("Проверка вычитания 4")
+    @CsvSource({"5, 3, 2", "5, 2, 3", "0, 0, 0"})
+    void subtraction2(int a, int b, int expectedsubtract) {
+        Calc calc = new Calc();
+        int result2 = calc.subtract(a, b);
+        Assertions.assertEquals(expectedsubtract, result2, "Ответ не верен");
     }
 }
