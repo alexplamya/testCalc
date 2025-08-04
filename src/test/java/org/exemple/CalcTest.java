@@ -37,6 +37,7 @@ class CalcTest {
         Calc calc = new Calc();
         int result = calc.sum(1, 6);
         Assertions.assertEquals(7, result, "Ответ не верен");
+        int num = 0;
 
     }
 
