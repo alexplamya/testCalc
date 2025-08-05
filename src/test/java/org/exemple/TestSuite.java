@@ -4,6 +4,6 @@ import org.junit.platform.suite.api.SelectPackages;
 import org.junit.platform.suite.api.Suite;
 
 @Suite
-@SelectPackages("org.exemple")
+@SelectPackages("org.example")
 public class TestSuite {
 }

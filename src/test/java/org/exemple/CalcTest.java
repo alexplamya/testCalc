@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalcTest {
-
+    Calc calc = new Calc();
     @BeforeAll
     public static void BeforeAll() {
         System.out.println("before all");
@@ -34,9 +34,8 @@ class CalcTest {
     @Timeout(10)
     @Tag("sum")
     void sum1() {
-        Calc calc = new Calc();
         int result = calc.sum(1, 6);
-        Assertions.assertEquals(7, result, "Ответ не верен");
+        assertEquals(7, result, "Ответ не верен");
     }
 
     @Test
@@ -44,26 +43,23 @@ class CalcTest {
     @Timeout(10)
     @Tag("subtraction")
     void subtraction1() {
-        Calc calc = new Calc();
-        int result2 = calc.subtract(5, 1);
-        Assertions.assertEquals(4, result2, "Ответ не верен");
+        int result = calc.subtract(5, 1);
+        assertEquals(4, result, "Ответ не верен");
     }
 
     @ParameterizedTest(name = "#{index} - сложение {0} и {1}, ожидаем {2}")
     @DisplayName("Проверка суммирования 3")
     @CsvSource({"1, 2, 3", "-1, 2, 1", "0, 0, 0"})
-    void sum3(int a, int b, int expectedresult) {
-        Calc calc = new Calc();
+    void sum3(int a, int b, int expectedResult) {
         int result = calc.sum(a, b);
-        Assertions.assertEquals(expectedresult, result, "Ответ не верен");
+        assertEquals(expectedResult, result, "Ответ не верен");
     }
 
-    @ParameterizedTest(name = "#{index} - разница {5} и {3}, ожидаем {2}")
+    @ParameterizedTest(name = "#{index} - разница {0} и {1}, ожидаем {2}")
     @DisplayName("Проверка вычитания 4")
-    @CsvSource({"5, 3, 2", "5, 2, 3", "0, 0, 0"})
-    void subtraction2(int a, int b, int expectedsubtract) {
-        Calc calc = new Calc();
-        int result2 = calc.subtract(a, b);
-        Assertions.assertEquals(expectedsubtract, result2, "Ответ не верен");
+    @CsvSource({"1, 1, 0", "-1, 1, -2", "0, 0, 0"})
+    void subtraction2(int a, int b, int expectedSubtract) {
+        int result = calc.subtract(a, b);
+        assertEquals(expectedSubtract, result, "Ответ не верен");
     }
 }
